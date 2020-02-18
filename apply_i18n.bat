@@ -1,2 +1,2 @@
 @echo on
-python tools/apply_i18n.py -d D:/Steam/steamapps/common/Underrail/Data/_Dialogs -T data/i18n -o data/dialogs/ -S
+python tools\apply_i18n.py -d ..\data\dialogs -T ..\data\i18n\dialogs -o ..\data_new\dialogs\ -S

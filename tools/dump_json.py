@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 import json
 import sys
 import os
@@ -16,10 +16,11 @@ def unpack(entry, opts):
         store_path = os.path.join(
             opts.output_dir, entry.path.split(opts.dialogs_dir)[-1][1:]
         )
+        store_path = store_path.replace('\\', '/')
         i18n_path, file_name = store_path.rsplit('/', 1)
         if not os.path.exists(i18n_path):
             os.makedirs(i18n_path)
-        file_name = file_name.replace('.udlg', '.json')
+        file_name = file_name+'.json'
         store_path = os.path.join(i18n_path, file_name)
         if not(opts.skip_processed and os.path.exists(store_path)):
             print("Processing: %s" % entry.path)
@@ -35,8 +36,6 @@ def process(opts, path=None):
         if entry.is_dir():
             process(opts, path=entry.path)
         else:
-            if not entry.name.endswith('.udlg'):
-                continue
             unpack(entry, opts)
 
 

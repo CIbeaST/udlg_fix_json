@@ -22,7 +22,7 @@ def apply(entry, cache, opts):
         ).replace('\\', '/')
         i18n_path = os.path.join(
             opts.i18n_dir, entry.path.split(opts.dialogs_dir)[-1][1:]
-        ).replace('\\', '/')+'.txt'
+        ).replace('\\', '/')+'.json'
         store_entry_path, store_entry = store_path.rsplit('/', 1)
         if not os.path.exists(store_entry_path):
             os.makedirs(store_entry_path)

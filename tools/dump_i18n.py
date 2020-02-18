@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 import sys
 import os
 import argparse
@@ -19,7 +19,7 @@ def unpack(entry, opts):
         i18n_path, file_name = store_path.rsplit('/', 1)
         if not os.path.exists(i18n_path):
             os.makedirs(i18n_path)
-        file_name = file_name.replace('.udlg', '.txt')
+        file_name = file_name+'.txt'
         store_path = os.path.join(i18n_path, file_name)
         if not(opts.skip_processed and os.path.exists(store_path)):
             print("Processing: %s" % entry.path)
@@ -35,8 +35,6 @@ def process(opts, path=None):
         if entry.is_dir():
             process(opts, path=entry.path)
         else:
-            if not entry.name.endswith('.udlg'):
-                continue
             unpack(entry, opts)
 
 
