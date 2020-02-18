@@ -29,7 +29,7 @@ from .. import enums
 class LengthPrefixedString(BinaryRecordStructure):
     _fields_ = [
         ('size', ctypes.c_uint32),
-        ('value', ctypes.c_char_p)
+        ('value', ctypes.c_wchar_p)
     ]
 
     def to_bin(self):
@@ -93,7 +93,7 @@ class LengthPrefixedString(BinaryRecordStructure):
         """
         size = read_7bit_encoded_int_from_stream(stream=stream)
         self.size = size
-        self.value = stream.read(size)
+        self.value = ctypes.c_wchar_p(stream.read(size).decode('utf-8'))
 
 
 class PrimitiveValue(ctypes.Structure):
