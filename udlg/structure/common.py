@@ -36,7 +36,7 @@ class LengthPrefixedString(BinaryRecordStructure):
         document = bytearray()
         size_string = write_7bit_int(self.size)
         document.extend(pack('%is' % len(size_string), size_string))
-        document.extend(pack('%is' % self.size, self.value))
+        document.extend(pack('%is' % self.size, self.value.encode('utf-8')))
         return document
 
     def set(self, value):

@@ -172,12 +172,7 @@ class Record(SimpleSerializerMixin, ctypes.Structure):
 
 class UDLGHeader(SimpleSerializerMixin, ctypes.Structure):
     _fields_ = [
-        ('unknown_1', c_uint32),
-        ('unknown_2', c_uint32),
-        ('unknown_3', c_uint32),
-        ('unknown_4', c_uint32),
-        ('unknown_5', c_uint32),
-        ('unknown_6', c_uint32),
+        ('signature',ctypes.c_byte * SIGNATURE_SIZE)
     ]
 
     def to_bin(self):

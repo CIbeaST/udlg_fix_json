@@ -21,10 +21,10 @@ class SimpleSerializerMixin(object):
             entry = getattr(self, field_name.replace('_ptr', ''))
             if isinstance(entry, list):
                 value = [
-                    x.to_dict() if hasattr(x, 'to_dict') else x for x in entry
+                    x.to_dict() if hasattr(x, 'to_dict') else str(x) for x in entry
                 ]
             else:
-                value = entry.to_dict() if hasattr(entry, 'to_dict') else entry
+                value = entry.to_dict() if hasattr(entry, 'to_dict') else str(entry)
             document.update({
                 field_name.replace('_ptr', ''): value
             })
